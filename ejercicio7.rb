@@ -1,41 +1,55 @@
-inventario = {"Notebooks": 4, "PC Escritorio": 6, "Routers": 10,
-"Impresoras": 6}
+inventario = {"Notebooks": 4, "Computador Escritorio": 6, "Routers": 10, "Impresoras": 6}
+
+print inventario
 
 def add_element(hash)
-  puts "Agrega un artículo al inventario con su stock (ej: Notebook, 4)"
-  input = gets.chomp.split(',').map{ |elem| elem.strip }
+  puts "Agrega un item, ejemplo: Pendrives, 100"
+  #gets da string, split da arrays
+  input = gets.split(',').map { |ele| ele.strip } 
   hash[input[0].to_sym] = input[1].to_i
-  print input
+  print hash
 end
 
+def delete_element
+end
 
+def update_element(hash)
+  print hash,"\n"
+  puts "Ingresa el ítem a editar"
+  # puts 'one TWO three foUR'.split.map(&:capitalize).join(' ')
+  updated_element = gets.chomp.split.map(&:capitalize).join(' ')
+  puts "Ingresa el nuevo stock"
+  updated_stock = gets
+  hash[updated_element.to_sym] = updated_stock.to_i
+  print hash
+end
 
+puts "Sistema de inventario"
+puts '########################################################'
+option = 0
+while option != '7'
+  puts "ingresa 1 para agregar"
+  puts "ingresa 2 para eliminar"
+  puts "ingresa 3 para actualizar"
+  puts "ingresa 4 para ver resumen de stock"
+  puts "ingresa 5 para ver el item con mayor cantidad de stock"
+  puts "ingresa 6 para ver si existe el item"
+  puts "ingresa 7 para salir"
 
-puts "Sistema de inventario", "\n"
+  option = gets.chomp
 
-puts "Ingrese 1"
-puts "Ingrese 2"
-puts "Ingrese 3"
-puts "Ingrese 4"
-puts "Ingrese 5"
-puts "Ingrese 6"
-puts "Ingrese 7 para salir"
+  puts case option
+  when '1'
+    add_element(inventario)
+  when '2'
+    
+  when '3'
+    update_element(inventario)
 
-selection = gets.chomp
+  when '4'
 
-puts case selection
+  when '5'
 
-when '1'
-"Ingrese artículo y su stock (ej: Notebook, 4 )"
-add_element = gets.chomp
-inventario(selection_1)
-puts inventario
-
-when '2'
-when '3'
-when '4'
-when '5'
-when '6'
-when '7'
-else
-puts   
+  when '6'
+  end
+end
