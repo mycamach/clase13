@@ -10,7 +10,12 @@ def add_element(hash)
   print hash
 end
 
-def delete_element
+def delete_element(hash)
+  print hash, "\n"
+  puts "Ingrese el ítem a borrar"
+  choice = gets.chomp.split.map(&:capitalize).join(' ')
+  hash.delete(choice.to_sym) {|ele| puts "#{ele} no se encuentra en el inventario"}
+  print hash
 end
 
 def update_element(hash)
@@ -42,6 +47,7 @@ while option != '7'
   when '1'
     add_element(inventario)
   when '2'
+  	delete_element(inventario)
     
   when '3'
     update_element(inventario)
