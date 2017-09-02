@@ -29,17 +29,44 @@ def update_element(hash)
   print hash
 end
 
+def stock_summary(hash)
+  stock = hash.values.inject(0) {|sum, v| sum + v}
+  puts "El inventario actual tiene #{stock} ítems"
+end
+
+def max_stock(hash)
+  max = hash.max_by {|key, value| value}
+  puts "El producto con mayor stock es #{max[0]}."
+end
+
+def check_if_exists(hash)
+  puts "Ingresa el ítem que quieres chequear"
+  item = gets.chomp.split.map(&:capitalize).join(' ').to_sym
+  result = hash[item]
+  if result # = true / Si lo encuentra no tira nil e imprime
+  	puts "El ítem SI se encuentra en el inventario"
+  else
+  	puts "Eĺ ítem NO se encuentra en el inventario"
+  end
+end
+
+=begin
+puts "El producto #{item.to_s}"
+result? "se encuentra en el inventario" : "no se encuentra en el inventario"
+=end
+
+
 puts "Sistema de inventario"
 puts '########################################################'
 option = 0
 while option != '7'
-  puts "ingresa 1 para agregar"
-  puts "ingresa 2 para eliminar"
-  puts "ingresa 3 para actualizar"
-  puts "ingresa 4 para ver resumen de stock"
-  puts "ingresa 5 para ver el item con mayor cantidad de stock"
-  puts "ingresa 6 para ver si existe el item"
-  puts "ingresa 7 para salir"
+  puts "Ingrese 1 para agregar un ítem"
+  puts "Ingrese 2 para eliminar un ítem"
+  puts "Ingrese 3 para actualizar la información de un ítem"
+  puts "Ingrese 4 para ver la cantidad de stock total"
+  puts "Ingrese 5 para ver el ítem con mayor cantidad de stock"
+  puts "Ingrese 6 para ver si el ítem existe en el inventario"
+  puts "Ingrese 7 para salir"
 
   option = gets.chomp
 
@@ -53,9 +80,14 @@ while option != '7'
     update_element(inventario)
 
   when '4'
+  	stock_summary(inventario)
 
   when '5'
+  	max_stock(inventario)
 
   when '6'
+  	check_if_exists(inventario)
+  else
+  	exit
   end
 end
